@@ -13,6 +13,6 @@ public class App
     
     public static String greetings()
     {
-        return "Hola mundo !";
+        return "Salut !";
     }
 }
