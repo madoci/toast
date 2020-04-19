@@ -33,6 +33,6 @@ public class AppTest
      */
     public void testApp()
     {
-        fail("Not yet implemented");
+        assertEquals(App.greetings(), "Salut !");
     }
 }
