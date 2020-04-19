@@ -11,7 +11,7 @@ public class App
         System.out.println( greetings() );
     }
     
-    pubic static String greetings()
+    public static String greetings()
     {
         return "Hola mundo !";
     }
