@@ -1,11 +1,21 @@
 language: java
 jdk:
-- openjdk8
+  - openjdk8
+
 cache:
   directories:
   - "$HOME/.m2"
+
+jobs:
+  include:
+    - stage: test
+      script: mvn test -B
+
+    - stage: deploy
+      script: mvn verify -B
+
 after-success:
-- bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
 
 deploy:
   provider: releases
@@ -14,4 +24,5 @@ deploy:
   file: target/*.jar
   skip_cleanup: true
   on:
-    tags: true
+    - branches: master
+    - tags: true
