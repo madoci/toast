@@ -6,6 +6,10 @@ cache:
   directories:
   - "$HOME/.m2"
 
+stages:
+  - name: deploy
+    if: branch = master
+
 jobs:
   include:
     - stage: test
@@ -20,7 +24,6 @@ jobs:
         file: target/*.jar
         skip_cleanup: true
         on:
-          branch: master
           tags: true
 
 after-success:
