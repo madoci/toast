@@ -2,12 +2,6 @@ language: java
 jdk:
   - openjdk8
 
-env:
-  - MAVEN_PHASE=test
-
-script:
-  - mvn $MAVEN_PHASE -B
-
 jobs:
   include:
     - name: test
