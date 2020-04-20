@@ -2,26 +2,26 @@ language: java
 jdk:
   - openjdk8
 
+env:
+  - MAVEN_PHASE=test
+
+script:
+  - mvn $MAVEN_PHASE -B
+
+deploy:
+  provider: releases
+  env:
+    - MAVEN_PHASE=package
+  api_key:
+    secure: eRDyj/N2/cZYaGlp/SqnTEe6XMXrSACDYmZ8uMrZlr+n/zzB/QYNFRAoKoT61D8JXiv+Up7jMEcO8AbIuLUV9drxZSalM3UGreiCD95Cml8ylrI789kuTz87SpqYOUtwxza6DcHWGOQz9pih7WFLIlCJn+TNqj+GwzlbE04YJwTHJymxE5TlVB5D/xaJV0b/053eLcioZIv8qHksza2Los2xm1Og3mwFYU4TkiMJlY2s163RvnuPkUX/zSv7OcsC7yNo4jaiAtHTdeCyki30v5AzjSrmKfzyDGTmjjyNSF6Xve08Q3JS+6xFXuAq+U+rrLEM9TSuZPQhejXuVy30IKyh0vfUwEOpPacul5eV/GTgBx7AwyWQm4HqI6Sh6o4ayzarC5R2LXn3aI/wVL0TemZ/LaPzGrgiZoIwuKZIPDQw8/SHqyiw4oQzvsTSUW4HZOwg7xxa8MpdxwB3ltVic1J9a8U9lpyrfbHAo49N+ymZYwwCbESvz1pLS2FbwlzYcEySbt8JwN5yyfKabfe/4gkhOET98DgyF7eetS8LJKTEReRcUwhs+K9cC2RWYF6YE7GwahBredZqS649hWTYXMHj44Niu1B3VPPisMf0TCOOS3WDIEuXff067YT8/v+LSRdDzpshfBJ9eH2lXLDV3MxzWrIxiT2h14F16od9hhE=
+  file: $HOME/build/madoci/toast/target/*.jar
+  skip_cleanup: true
+  on:
+    tags: true
+
 cache:
   directories:
   - "$HOME/.m2"
-
-stages:
-  - name: deploy
-    if: branch = master
-
-jobs:
-  include:
-    - stage: deploy
-      script: mvn package -B
-      deploy:
-        provider: releases
-        api_key:
-          secure: eRDyj/N2/cZYaGlp/SqnTEe6XMXrSACDYmZ8uMrZlr+n/zzB/QYNFRAoKoT61D8JXiv+Up7jMEcO8AbIuLUV9drxZSalM3UGreiCD95Cml8ylrI789kuTz87SpqYOUtwxza6DcHWGOQz9pih7WFLIlCJn+TNqj+GwzlbE04YJwTHJymxE5TlVB5D/xaJV0b/053eLcioZIv8qHksza2Los2xm1Og3mwFYU4TkiMJlY2s163RvnuPkUX/zSv7OcsC7yNo4jaiAtHTdeCyki30v5AzjSrmKfzyDGTmjjyNSF6Xve08Q3JS+6xFXuAq+U+rrLEM9TSuZPQhejXuVy30IKyh0vfUwEOpPacul5eV/GTgBx7AwyWQm4HqI6Sh6o4ayzarC5R2LXn3aI/wVL0TemZ/LaPzGrgiZoIwuKZIPDQw8/SHqyiw4oQzvsTSUW4HZOwg7xxa8MpdxwB3ltVic1J9a8U9lpyrfbHAo49N+ymZYwwCbESvz1pLS2FbwlzYcEySbt8JwN5yyfKabfe/4gkhOET98DgyF7eetS8LJKTEReRcUwhs+K9cC2RWYF6YE7GwahBredZqS649hWTYXMHj44Niu1B3VPPisMf0TCOOS3WDIEuXff067YT8/v+LSRdDzpshfBJ9eH2lXLDV3MxzWrIxiT2h14F16od9hhE=
-        file: target/*.jar
-        skip_cleanup: true
-        on:
-          tags: true
 
 after-success:
   - bash <(curl -s https://codecov.io/bash)
