@@ -11,8 +11,8 @@ jobs:
       if: tag IS present
       script: 
         - mvn package -B
-	- ls
-	- ls target
+        - ls
+        - ls target
       deploy:
         provider: releases
         api_key:
