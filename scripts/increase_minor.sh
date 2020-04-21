@@ -17,8 +17,8 @@ lastIndex=$( expr ${#nums[@]} - 1 )
 # Don't update version if already a SNAPSHOT
 if [ ${nums[$lastIndex]} != "SNAPSHOT" ]
 then
-  newMINOR=$( expr ${nums[1]} + 1)              # Increase MINOR by 1
-  newVERSION="${nums[0]}.$newMINOR-SNAPSHOT"    # Add -SNAPSHOT at the end
+  newMINOR=$( expr ${nums[1]} + 1)
+  newVERSION="${nums[0]}.$newMINOR-SNAPSHOT"
 
-  mvn versions:set -DnewVersion=$newVERSION     # Set the new version in POM file
+  mvn versions:set -DnewVersion=$newVERSION
 fi
