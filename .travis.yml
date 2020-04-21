@@ -22,6 +22,12 @@ jobs:
         skip_cleanup: true
         on:
           tags: true
+      after_deploy:
+        - git checkout master
+        - bash scripts/increase_minor.sh
+        - git add pom.xml
+        - git commit -m "Prepare next release"
+        - git push
 
 cache:
   directories:

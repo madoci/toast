@@ -24,3 +24,9 @@ hs_err_pid*
 
 # Target folder
 target
+
+# Bin folder
+bin
+
+# POM versions backup
+pom.xml.versionsBackup
