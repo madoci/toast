@@ -11,7 +11,21 @@ jobs:
     - name: deploy
       if: tag IS present
       script: 
-        - mvn deploy -B
+        - mvn package -B
+      before_deploy:
+        - bash scripts/setup_git.sh
+        - bash scripts/prepare_release.sh
+      deploy:
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file_glob: true
+        file: ./target/jelly-*.jar
+        skip_cleanup: true
+        on:
+          tags: true
+      after_deploy:
+        - bash scripts/increase_minor.sh
+        - bash scripts/prepare_snapshot.sh
 
 cache:
   directories:
