@@ -2,7 +2,7 @@
 
 [Mise en place du projet](#mise-en-place-du-projet)  
 [Workflow](#workflow)  
-[Déployer le logiciel](#déployer-le-logiciel)  
+[Déployer le logiciel](#deployer-le-logiciel)  
 
 
 # Mise en place du projet
@@ -145,7 +145,7 @@ git push origin --delete <branch-name>
 ```
 
 
-# Déployer le logiciel
+# Déployer le logiciel <a name="deployer-le-logiciel"></a>
 
 ### Déployer sur Github releases
 Pour ajouter automatiquement le package JAR à une release Github en utilisant Travis CI, le fichier **.travis.yml** doit être modifié pour y ajouter la phase de déploiement :
