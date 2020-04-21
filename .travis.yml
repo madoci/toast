@@ -11,18 +11,7 @@ jobs:
     - name: deploy
       if: tag IS present
       script: 
-        - mvn package -B
-      deploy:
-        provider: releases
-        api_key: $GITHUB_TOKEN
-        file_glob: true
-        file: ./target/*.jar
-        skip_cleanup: true
-        on:
-          tags: true
-      after_deploy:
-        - bash scripts/increase_minor.sh
-        - bash scripts/push_pom.sh
+        - mvn deploy -B
 
 cache:
   directories:
