@@ -8,12 +8,13 @@ jobs:
       if: tag IS blank
       script: 
         - mvn test -B
+        
     - name: deploy
       if: tag IS present
       env:
         secure: "rBjrOMe3KdztZ9FuURu7cwCnnQuEt9i42/gQb7wgB0B2Sznaji+uf72VjqG7z9xK3TpeBklTzByYxqrkbHJDhBNeKoWrI6wTJYLiFCpFYpfrQ0bCxQfFSj6xL+1yTkRUlGJ4gl9LzqLjoNkMjYuAk/pc7b7TK61VCfgLUvkbzmm3F1XJMKWK1QAQzJt6pI/vNlNVcByfxUgsoHrXEOf5puIUGLEBOXYQzZw6zmTM1E6hFDcUP1Na/pqLUdk/twMpBw1DHnRVhsvw1AIsbcSmIx/OIwZzFWRPGC03x9o+z/LQrQhlN9doJzRonRdC6Z4CP9RgpEGliIkye+er7aSQINHnR2JZHoQVWVdOsqcpK6QoDfNGnGXHm44FpLd9r1p3vGGgUo9DjKcuq8IfK7emjEfDnUNcLnwv6feVkWRitLBzv8EC/3U2moWN0GtoEMZK/xd9tW4+eoUCgGF8SKQwPPiUeXDj9U8pWoj2O5Ai2qji3YmGG/BQA0QYfhz+7kcoafziJ3y1hgU3T/OJdQSvuUJXIImmsTjyHwfDEoTcsY5ppzsoBUDrrDtGiTle/c3y73pmcckKClczGde1wuLvW90fA2l1hPPBnsEaXIopX6RDYxauIMLklOjGLc3LYcMacUz3avOybcg8eSLp7m4knxHZ5bquZDIpNjq+8+FJQJQ="
       script: 
-        - mvn deploy -B
+        - mvn package -B
       deploy:
         provider: releases
         api_key: $GH_TOKEN
