@@ -6,7 +6,7 @@ VERSION=${VERSION//v/}
 
 # Remove tag
 git tag -d $TRAVIS_TAG
-git push --delete origin $TRAVIS_TAG
+git push --delete origin-travis $TRAVIS_TAG
 
 # Change POM version to release version
 mvn versions:set -DnewVersion=$VERSION
