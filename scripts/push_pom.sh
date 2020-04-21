@@ -12,5 +12,5 @@ git add pom.xml
 git commit -m "Prepare next release"
 
 # Push pom.xml
-git remote add origin https://${GH_TOKEN}@github.com/madoci/toast.git
+git remote set-url origin https://${GH_TOKEN}@github.com/madoci/toast.git
 git push --quiet --set-upstream origin master
