@@ -3,7 +3,7 @@
   <groupId>fr.uga.fran</groupId>
   <artifactId>toast</artifactId>
   <packaging>jar</packaging>
-  <version>0.3.21</version>
+  <version>0.4-SNAPSHOT</version>
   <name>toast</name>
   <url>http://maven.apache.org</url>
   
@@ -24,7 +24,7 @@
     <url>https://github.com/madoci/toast</url>
     <connection>scm:git:git@github.com:madoci/toast.git</connection>
     <developerConnection>scm:git:git@github.com:madoci/toast.git</developerConnection>
-    <tag>toast-0.3.21</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <build>
