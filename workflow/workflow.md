@@ -1,11 +1,11 @@
 # Table des matières
 
-[Mise en place du projet](#mise-en-place-du-projet)  
+[Mise en place du projet](#mise-en-place)  
 [Workflow](#workflow)  
 [Déployer le logiciel](#deployer-le-logiciel)  
 
 
-# Mise en place du projet
+# Mise en place du projet <a name="mise-en-place"></a>
 
 ### Création du dépôt
 Pour créer un nouveau projet utilisant **Github** et **Maven**, les étapes à suivre sont les suivantes :
@@ -145,9 +145,9 @@ git push origin --delete <branch-name>
 ```
 
 
-# Déployer le logiciel <a name="deployer-le-logiciel"></a>
+# Déployer le logiciel <a name="deployer-le-logiciel"></a>
 
-### Déployer sur Github releases
+### Déployer sur Github releases
 Pour ajouter automatiquement le package JAR à une release Github en utilisant Travis CI, le fichier **.travis.yml** doit être modifié pour y ajouter la phase de déploiement :
 ```yml
 jobs:
@@ -186,6 +186,7 @@ travis login --pro
 ```
 travis encrypt --pro GITHUB_TOKEN="<token>"
 ```
+
 
 ### Mettre à jour la version du POM
 Afin d'éviter d'avoir à modofier manuellement la version du POM vers une nouvelle version de développement après chaque release, il est possible de déléguer cette action à Travis CI.  
