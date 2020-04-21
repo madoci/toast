@@ -11,12 +11,12 @@ jobs:
     - name: deploy
       if: tag IS present
       env:
-        secure: "rBjrOMe3KdztZ9FuURu7cwCnnQuEt9i42/gQb7wgB0B2Sznaji+uf72VjqG7z9xK3TpeBklTzByYxqrkbHJDhBNeKoWrI6wTJYLiFCpFYpfrQ0bCxQfFSj6xL+1yTkRUlGJ4gl9LzqLjoNkMjYuAk/pc7b7TK61VCfgLUvkbzmm3F1XJMKWK1QAQzJt6pI/vNlNVcByfxUgsoHrXEOf5puIUGLEBOXYQzZw6zmTM1E6hFDcUP1Na/pqLUdk/twMpBw1DHnRVhsvw1AIsbcSmIx/OIwZzFWRPGC03x9o+z/LQrQhlN9doJzRonRdC6Z4CP9RgpEGliIkye+er7aSQINHnR2JZHoQVWVdOsqcpK6QoDfNGnGXHm44FpLd9r1p3vGGgUo9DjKcuq8IfK7emjEfDnUNcLnwv6feVkWRitLBzv8EC/3U2moWN0GtoEMZK/xd9tW4+eoUCgGF8SKQwPPiUeXDj9U8pWoj2O5Ai2qji3YmGG/BQA0QYfhz+7kcoafziJ3y1hgU3T/OJdQSvuUJXIImmsTjyHwfDEoTcsY5ppzsoBUDrrDtGiTle/c3y73pmcckKClczGde1wuLvW90fA2l1hPPBnsEaXIopX6RDYxauIMLklOjGLc3LYcMacUz3avOybcg8eSLp7m4knxHZ5bquZDIpNjq+8+FJQJQ="
+        secure: "sLJ5YnPSvvdGcXyWj5cHuBnVjaVrFnqZMYw+uQs56JG9Qc2qsFwg6FGcwkslsBVHGqdJTzvZIKR8Ct+AIb0UR94v3RXiJuyOQ4gCq46oBqWhU8W3Fq8UAbIfKhILYRGN6XA4VdPsZklzcu7vxsUA+TT90JcobfSvyK7KEJCLeGysy7vuRgZnTF7Ew7vjC7IEd3PTRMBmwDSVRyYtP8frpuU+0VvbrcbBVh0cG0Uzoj1tHjaRx14OA9QIuQbqscMkJry2UQy/tGu66l6BJvFMeE/AXLp1395xs5PCYNjA6NPL0cQ/p0jSpuWUfG+T8tz47uwkIsAeVf72RRMxc4nTMAYKBYl+YXzwbJtp7kqsnMd1THBt/YWYtDuR/OS166fkF90Lfq+dtRxQe5erDuTe7dcmola6DoKBoGxBA5W0PztQtZJvEy5jh15oL6rV+6l+ARXsMdntkH6CujoQq12afub2PjFGyoJvvWgumNFPYLmhAj1j4iccbZAJxWXKJAQC94zVbAVrfnqYKrm8e439NSQ8xcUAXyVCNpn5jUSs0eI7J22lOlZKeUDqT2d2smBGNLVRYfJJHLZNyBx4lcJu3psPkAIkiw3481jEh3V8sh4yL67jFDLx0+ui4l0XeR6nfk5MrZI4/B5/H9mVzUaytAexT84Ik5rxu3/z8yzAj0s="
       script: 
         - mvn package -B
       deploy:
         provider: releases
-        api_key: $GH_TOKEN
+        api_key: $GITHUB_TOKEN
         file_glob: true
         file: ./target/*.jar
         skip_cleanup: true
