@@ -1,13 +1,23 @@
 # Table des matières
 
-[Mise en place du projet](#mise-en-place)  
-[Workflow](#workflow)  
-[Déployer le logiciel](#deployer-le-logiciel)  
+- [Mise en place du projet](#mise-en-place-du-projet)  
+  - [Création du dépôt](#creation-du-depot)
+  - [Mise en place de Travis CI](#mise-en-place-de-travis-ci)
+  - [Utilisation de Junit et JaCoCo](#utilisation-de-junit-et-jacoco)
+  - [Imposer les pull request](#imposer-les-pull-request)
+- [Workflow](#workflow)  
+  - [Créer une nouvelle branche](#creer-une-nouvelle-branche)
+  - [Ouvrir une pull request](#ouvrir-une-pull-request)
+  - [Fermer la pull request et créer une release](#fermer-la-pull-request)
+  - [Supprimer la branche](#supprimer-la-branche)
+- [Déployer le logiciel](#deployer-le-logiciel)  
+  - [Déployer sur Github Releases](#deployer-sur-github-releases)
+  - [Mettre à jour la version du POM](#mettre-a-jour-la-version-du-pom)
 
 
-# Mise en place du projet <a name="mise-en-place"></a>
+# Mise en place du projet
 
-### Création du dépôt
+### Création du dépôt <a name="creation-du-depot"></a>
 Pour créer un nouveau projet utilisant **Github** et **Maven**, les étapes à suivre sont les suivantes :
 
 1. Créer un dépôt vide sur Github
@@ -114,7 +124,7 @@ Le workflow du projet est basé sur celui de Github. Pour plus de clarté, nous 
 - **feature/\<feature-name>** : branche de nouvelle fonctionnalité basée sur *master*
 - **hotfix/\<hotfix-name>** : branche de correction de bug basée sur *master*
 
-### Création d'une nouvelle branche
+### Créer une nouvelle branche <a name="creer-une-nouvelle-branche"></a>
 Pour commencer à implémenter une nouvelle fonctionnalité ou correction de bug, il faut créer une branche basée sur master :
 ```
 git branch <branch-name>
@@ -123,11 +133,11 @@ git push -u origin <branch-name>
 ```
 > Assurez-vous d'être sur la branche master et d'être à jour par rapport au dépôt distant avant de créer la nouvelle branche.
 
-### Ouverture d'une pull request
+### Ouvrir une pull request
 Une fois la fonctionnalité ou correction terminée, une pull request doit être ouverte sur Github.  
 Il faut alors mettre à jour la nouvelle branche par rapport à *master* si elle ne l'est pas, puis corriger les éventuels conflits ou erreurs jusqu'à ce que le build de pull request de Travis CI réussisse.
 
-### Fermeture de la pull request et Release
+### Fermer la pull request et créer une release <a name="fermer-la-pull-request"></a>
 Lorsque la nouvelle branche est jugée prête à la production, il revient à l'administrateur de :
 1. **Fusionner la pull request** sur *master*
 2. **Changer la version du POM** pour indiquer la version de release (non SNAPSHOT) et commit directement sur master
@@ -145,9 +155,9 @@ git push origin --delete <branch-name>
 ```
 
 
-# Déployer le logiciel <a name="deployer-le-logiciel"></a>
+# Déployer le logiciel <a name="deployer-le-logiciel"></a>
 
-### Déployer sur Github releases
+### Déployer sur Github Releases <a name="deployer-sur-github-releases"></a>
 Pour ajouter automatiquement le package JAR à une release Github en utilisant Travis CI, le fichier **.travis.yml** doit être modifié pour y ajouter la phase de déploiement :
 ```yml
 jobs:
@@ -187,8 +197,7 @@ travis login --pro
 travis encrypt --pro GITHUB_TOKEN="<token>"
 ```
 
-
-### Mettre à jour la version du POM
+### Mettre à jour la version du POM <a name="mettre-a-jour-la-version-du-pom"></a>
 Afin d'éviter d'avoir à modofier manuellement la version du POM vers une nouvelle version de développement après chaque release, il est possible de déléguer cette action à Travis CI.  
 Pour cela, il faut ajouter deux scripts bash à son projet (dans un dossier *scripts* par exemple) :  
 
