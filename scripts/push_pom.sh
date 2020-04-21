@@ -12,8 +12,5 @@ git add pom.xml
 git commit -m "Prepare next release"
 
 # Push pom.xml
-git remote -v
-git remote add origin-travis https://${GH_TOKEN}@github.com/madoci/toast.git
-git remote -v
-git branch
+git remote add origin-travis https://${GITHUB_TOKEN}@github.com/madoci/toast.git
 git push --quiet --set-upstream origin-travis master
