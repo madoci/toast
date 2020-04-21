@@ -2,7 +2,7 @@
 
 [Mise en place du projet](#mise-en-place-du-projet)  
 [Workflow](#workflow)  
-[Déployer le logiciel](#deployer-le-logiciel)  
+[Déployer le logiciel](#déployer-le-logiciel)  
 
 
 # Mise en place du projet
