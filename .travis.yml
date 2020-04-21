@@ -8,6 +8,7 @@ jobs:
       if: tag IS blank
       script: 
         - mvn test -B
+        - git remote -v
     - name: deploy
       if: tag IS present
       script: 
