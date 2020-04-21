@@ -4,7 +4,7 @@
   <groupId>fr.uga.fran</groupId>
   <artifactId>toast</artifactId>
   <packaging>jar</packaging>
-  <version>0.3-SNAPSHOT</version>
+  <version>0.3.0</version>
   <name>toast</name>
   <url>http://maven.apache.org</url>
   
