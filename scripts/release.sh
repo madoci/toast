@@ -48,5 +48,5 @@ git commit -m "Prepare release $version"
 git push
 
 # Tag release
-git tag -a $tag -m $name
+git tag -a $tag -m "$name"
 git push --tags
