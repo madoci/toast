@@ -21,7 +21,6 @@
   </dependencies>
 
   <distributionManagement>
-    <snapshotRepository>
     <repository>
       <id>github-toast</id>
       <name>GitHub release Apache Maven Packages</name>
