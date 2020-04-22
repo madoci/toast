@@ -28,11 +28,12 @@
   </scm>
 
   <distributionManagement>
-      <repository>
-           <id>internal.repo</id>
-           <name>Internal repo</name>
-           <url>file:///home/M1/DEVOPS/releases</url>
-         </repository>
+    <repository>
+      <id>toast</id>
+      <name>GitHub Toast repo</name>
+      <url>https://github.com/madoci/toast.git</url>
+      <layout>default</layout>
+    </repository>
   </distributionManagement>
 
   <build>
