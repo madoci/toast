@@ -29,9 +29,9 @@
 
   <distributionManagement>
     <repository>
-      <id>toast</id>
-      <name>GitHub Toast repo</name>
-      <url>https://github.com/madoci/toast</url>
+      <id>github-toast</id>
+      <name>GitHub madoci Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/madoci/toast</url>
       <layout>default</layout>
     </repository>
   </distributionManagement>
