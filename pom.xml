@@ -84,16 +84,6 @@
         <configuration>
             <tagNameFormat>v@{project.version}</tagNameFormat>
         </configuration>
-        <executions>
-          <execution>
-            <id>release</id>
-            <phase>deploy</phase>
-            <goals>
-              <goal>prepare</goal>
-              <goal>perform</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
 
     </plugins>
