@@ -1,5 +1,24 @@
 #!/bin/bash
 
+if [ $# -gt 1 ]
+then
+  VERSION=$1
+  mvn release:prepare -DnewVersion
+else
+  POM_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+  DEFAULT_VERSION=${POM_VERSION//-SNAPSHOT/}
+
+  echo "Release version ($DEFAULT_VERSION) :"
+  read VERSION
+  
+  if [ $VERSION == "" ]
+  then
+    VERSION=$DEFAULT_VERSION
+  fi
+fi
+
+TAG="v$VERSION"
+
 # Extract version number from tag
 VERSION=$TRAVIS_TAG
 VERSION=${VERSION//v/}

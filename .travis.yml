@@ -12,9 +12,6 @@ jobs:
       if: tag IS present
       script: 
         - mvn package -B
-      before_deploy:
-        - bash scripts/setup_git.sh
-        - bash scripts/prepare_release.sh
       deploy:
         provider: releases
         api_key: $GITHUB_TOKEN
@@ -24,7 +21,7 @@ jobs:
         on:
           tags: true
       after_deploy:
-        - bash scripts/increase_minor.sh
+        - bash scripts/setup_git.sh
         - bash scripts/prepare_snapshot.sh
 
 cache:
