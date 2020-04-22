@@ -23,7 +23,7 @@
   <distributionManagement>
     <repository>
       <id>github-toast</id>
-      <name>GitHub release Apache Maven Packages</name>
+      <name>GitHub Apache Maven Packages - Toast</name>
       <url>https://maven.pkg.github.com/madoci/toast</url>
     </repository>
   </distributionManagement>
