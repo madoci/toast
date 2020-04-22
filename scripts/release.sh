@@ -33,6 +33,8 @@ fi
 
 echo "Preparing release $version as \"$name\" with tag $tag"
 
+set -x
+
 # Make sure we are on master and everything is up-to-date
 git checkout master
 git pull
