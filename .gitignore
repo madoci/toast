@@ -28,5 +28,8 @@ target
 # Bin folder
 bin
 
-# POM versions backup
+# Maven plugins files
 pom.xml.versionsBackup
+pom.xml.releaseBackup
+release.properties
+
