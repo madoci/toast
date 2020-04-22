@@ -1,46 +1,50 @@
 #!/bin/bash
 
-if [ $# -gt 1 ]
-then
-  VERSION=$1
-  mvn release:prepare -DnewVersion
-else
-  POM_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-  DEFAULT_VERSION=${POM_VERSION//-SNAPSHOT/}
+# Extracting current version from POM and deducing release version
+POM_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+DEFAULT_VERSION=${POM_VERSION//-SNAPSHOT/}
 
-  echo "Release version ($DEFAULT_VERSION) :"
-  read VERSION
-  
-  if [ $VERSION == "" ]
-  then
-    VERSION=$DEFAULT_VERSION
-  fi
+# Ask for release version
+echo -n "Release version ? ($DEFAULT_VERSION) : "; read version
+if [ -z $version ]
+then
+    version=$DEFAULT_VERSION
 fi
 
-TAG="v$VERSION"
+# Default tag is prefixed by 'v'
+DEFAULT_TAG="v$version"
 
-# Extract version number from tag
-VERSION=$TRAVIS_TAG
-VERSION=${VERSION//v/}
+# Ask for release tag
+echo -n "Release tag ? ($DEFAULT_TAG) : "; read tag
+if [ -z $tag ]
+then
+    tag=$DEFAULT_TAG
+fi
 
-# Remove tag
-git tag -d $TRAVIS_TAG
-git push --delete origin-travis $TRAVIS_TAG
+# Extracting project name from POM and deducing release name
+PROJECT_NAME=$(mvn help:evaluate -Dexpression=project.name -q -DforceStdout)
+DEFAULT_NAME="$PROJECT_NAME $version"
+
+echo -n "Release name ? ($DEFAULT_NAME) : "; read name
+if [ -z $name ]
+then
+    name=$DEFAULT_NAME
+fi
+
+echo "Preparing release $version as \"$name\" with tag $tag"
 
 # Make sure we are on master and everything is up-to-date
 git checkout master
 git pull
 
-# Change POM version to release version
-mvn versions:set -DnewVersion=$VERSION
+# Set the release version in POM file
+mvn versions:set -DnewVersion=$version
 
-# Commit pom.xml
-git add pom.xml
-git commit -m "Prepare la release $VERSION"
+# Commit new POM
+git add .
+git commit -m "Prepare release $version"
+git push
 
-# Push pom.xml
-git push --quiet
-
-# Tag the commit
-git tag $TRAVIS_TAG
+# Tag release
+git tag -a $tag -m $name
 git push --tags
