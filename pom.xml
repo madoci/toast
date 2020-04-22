@@ -3,7 +3,7 @@
   <groupId>fr.uga.fran</groupId>
   <artifactId>toast</artifactId>
   <packaging>jar</packaging>
-  <version>0.5-SNAPSHOT</version>
+  <version>0.4-SNAPSHOT</version>
   <name>toast</name>
   <url>http://maven.apache.org</url>
 
@@ -20,25 +20,12 @@
     </dependency>
   </dependencies>
 
-  <scm>
-    <url>https://github.com/madoci/toast</url>
-    <connection>scm:git:git@github.com:madoci/toast.git</connection>
-    <developerConnection>scm:git:git@github.com:madoci/toast.git</developerConnection>
-    <tag>HEAD</tag>
-  </scm>
-
   <distributionManagement>
     <snapshotRepository>
-      <id>github-toast-snapshot</id>
-      <name>GitHub snapshot Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/madoci/toast</url>
-      <uniqueVersion>true</uniqueVersion>
-    </snapshotRepository>
     <repository>
-      <id>github-toast-release</id>
+      <id>github-toast</id>
       <name>GitHub release Apache Maven Packages</name>
       <url>https://maven.pkg.github.com/madoci/toast</url>
-      <uniqueVersion>false</uniqueVersion>
     </repository>
   </distributionManagement>
 
@@ -80,15 +67,6 @@
         <version>2.14.1</version>
         <configuration>
           <argLine>${argLine}</argLine>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>3.0.0-M1</version>
-        <configuration>
-            <tagNameFormat>v@{project.version}</tagNameFormat>
         </configuration>
       </plugin>
 

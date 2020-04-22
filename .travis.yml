@@ -5,13 +5,16 @@ jdk:
 jobs:
   include:
     - name: test
-      if: tag IS blank
+      if: tag IS blank AND (NOT branch = master)
       script: 
         - mvn test -B
+
     - name: deploy
-      if: tag IS present
+      if: tag IS present OR branch = master
+      before_script:
+        - cp ./.travis/settings.xml $HOME/.m2
       script: 
-        - mvn package -B
+        - mvn deploy -B
       deploy:
         provider: releases
         api_key: $GITHUB_TOKEN
