@@ -31,7 +31,7 @@
     <repository>
       <id>toast</id>
       <name>GitHub Toast repo</name>
-      <url>https://github.com/madoci/toast.git</url>
+      <url>https://github.com/madoci/toast</url>
       <layout>default</layout>
     </repository>
   </distributionManagement>
