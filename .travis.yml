@@ -13,10 +13,9 @@ jobs:
       if: tag IS present
       before_script:
         - cp ./.travis/settings.xml $HOME/.m2
-        - ls $HOME/.m2
-        - cat $HOME/.m2/settings.xml
       script: 
         - mvn deploy -B
+        - ls target
       deploy:
         provider: releases
         api_key: $GITHUB_TOKEN
@@ -25,9 +24,6 @@ jobs:
         skip_cleanup: true
         on:
           tags: true
-      after_deploy:
-        - bash scripts/setup_git.sh
-        - bash scripts/prepare_snapshot.sh
 
 cache:
   directories:

@@ -21,17 +21,20 @@ then
     tag=$DEFAULT_TAG
 fi
 
-# Extracting project name from POM and deducing release name
-PROJECT_NAME=$(mvn help:evaluate -Dexpression=project.name -q -DforceStdout)
-DEFAULT_NAME="$PROJECT_NAME $version"
+# Deduce next development version
+SPLIT_VERSION=${version//./ }
+IFS=' '
+read -ra SPLIT_VERSION <<< "$SPLIT_VERSION"
+NEW_MINOR=$( expr ${SPLIT_VERSION[1]} + 1 )
+DEFAULT_SNAPSHOT="${SPLIT_VERSION[0]}.$NEW_MINOR-SNAPSHOT"
 
-echo -n "Release name ? ($DEFAULT_NAME) : "; read name
-if [ -z $name ]
+echo -n "Next development version ? ($DEFAULT_SNAPSHOT) : "; read snapshot
+if [ -z $snapshot ]
 then
-    name=$DEFAULT_NAME
+    snapshot=$DEFAULT_SNAPSHOT
 fi
 
-echo "Preparing release $version as \"$name\" with tag $tag"
+echo "Preparing release $version with tag $tag"
 
 set -x
 
@@ -48,5 +51,15 @@ git commit -m "Prepare release $version"
 git push
 
 # Tag release
-git tag -a $tag -m "$name"
+git tag $tag
 git push --tags
+
+echo "Preparing next release $version with tag $tag"
+
+# Set the next development version in POM file
+mvn versions:set -DnewVersion=$snapshot
+
+# Commit new POM
+git add .
+git commit -m "Prepare for next development version $snapshot"
+git push
