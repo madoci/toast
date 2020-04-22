@@ -14,12 +14,12 @@ jobs:
       before_script:
         - cp ./.travis/settings.xml $HOME/.m2
       script: 
-        - mvn package -B
+        - mvn deploy -B
       deploy:
         provider: releases
         api_key: $GITHUB_TOKEN
         file_glob: true
-        file: ./target/jelly-*.jar
+        file: ./target/toast-*.jar
         skip_cleanup: true
         on:
           tags: true
